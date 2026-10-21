@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página Web Personal</title>
+  <style>
+    :root {
+      --bg: #452c13;
+      --panel: #9b703b;
+      --accent: #d5943a;
+      --accent2: #ff9d00;
+      --text: #fcf5e8;
+      --muted: #d8c4a2;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--accent2); }
+
+    /* ---------- Menú ---------- */
+    nav {
+      position: sticky; top: 0; z-index: 10;
+      background: rgba(38, 25, 11, 0.92);
+      backdrop-filter: blur(6px);
+      display: flex; gap: 22px; justify-content: center; flex-wrap: wrap;
+      padding: 14px 16px;
+      border-bottom: 1px solid #583b1f;
+    }
+    nav a { text-decoration: none; color: var(--muted); font-weight: 600; font-size: .95rem; }
+    nav a:hover { color: var(--accent2); }
+
+    /* ---------- Pantalla de presentación ---------- */
+    header.hero {
+      min-height: 88vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 40px 20px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(213, 141, 58, 0.25), transparent 45%),
+        radial-gradient(circle at 80% 80%, rgba(255, 145, 0, 0.15), transparent 45%),
+        var(--bg);
+    }
+    .foto {
+      width: 210px; height: 210px; border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--accent2);
+      box-shadow: 0 0 30px rgba(255, 166, 0, 0.35);
+      background: var(--panel);
+      margin-bottom: 24px;
+    }
+    header.hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); }
+    header.hero p.sub { color: var(--muted); font-size: 1.15rem; margin-top: 6px; }
+
+    .botones { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 28px; }
+    .btn {
+      display: inline-block; text-decoration: none;
+      padding: 11px 22px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #04101f; font-weight: 700;
+      transition: transform .15s, box-shadow .15s;
+    }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(255, 183, 0, 0.35); }
+    .btn.outline { background: transparent; border: 2px solid var(--accent2); color: var(--accent2); }
+
+    /* ---------- Secciones ---------- */
+    section { max-width: 980px; margin: 0 auto; padding: 70px 20px 20px; }
+    section h2 {
+      font-size: 1.8rem; margin-bottom: 22px;
+      border-left: 5px solid var(--accent2); padding-left: 14px;
+    }
+    .card {
+      background: var(--panel); border: 1px solid #58461f;
+      border-radius: 14px; padding: 22px 24px;
+    }
+
+    /* Formación académica */
+    .timeline { list-style: none; border-left: 2px solid #7a5628; padding-left: 22px; }
+    .timeline li { position: relative; margin-bottom: 22px; }
+    .timeline li::before {
+      content: ""; position: absolute; left: -29px; top: 8px;
+      width: 12px; height: 12px; border-radius: 50%; background: var(--accent2);
+    }
+    .timeline strong { display: block; }
+    .timeline span { color: var(--muted); font-size: .95rem; }
+
+    /* Redes sociales */
+    .redes { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* Hobbies */
+    .galeria { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; margin-top: 20px; }
+    .galeria figure { background: var(--panel); border-radius: 14px; overflow: hidden; border: 1px solid rgb(88, 31, 74); }
+    .galeria img, .galeria video, .galeria iframe {
+      width: 100%; height: 190px; object-fit: cover; display: block; border: 0;
+      background: #4d391a;
+    }
+    .galeria figcaption { padding: 12px 14px; font-size: .95rem; color: var(--muted); }
+    .galeria figcaption b { color: var(--text); }
+
+    /* Criptografía */
+    .cripto h3 { margin: 18px 0 6px; color: var(--accent2); }
+
+    footer { text-align: center; color: var(--muted); padding: 50px 20px 30px; font-size: .9rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#formacion">Formación Académica</a>
+    <a href="#contacto">Contacto</a>
+    <a href="#hobbies">Hobbies</a>
+    <a href="#criptografia">Criptografía</a>
+  </nav>
+
+  <!-- ===== PANTALLA DE PRESENTACIÓN ===== -->
+  <header class="hero" id="inicio">
+    <!-- CAMBIA: pon tu fotografía en la carpeta img/ con el nombre foto.jpg -->
+    <img class="foto" src="one.jpg" alt="Fotografía de perfil"
+         onerror="this.removeAttribute('src')">
+    <!-- CAMBIA: tu nombre completo -->
+    <h1>Fatima Carmona Juárez</h1>
+    <p class="sub">Estudiante de Ingeniería en Sistemas Computacionales · ESCOM</p>
+
+    <div class="botones">
+      <!-- Link para descargar el CV en PDF -->
+      <a class="btn" href="cv.pdf" download>⬇ Descargar mi CV (PDF)</a>
+      <!-- Link a la llave pública (se generará en la práctica de RSA) -->
+      <a class="btn outline" href="llave_publica.txt">🔑 Mi llave Pública</a>
+    </div>
+  </header>
+
+  <!-- ===== FORMACIÓN ACADÉMICA ===== -->
+  <section id="formacion">
+    <h2>Formación Académica</h2>
+    <div class="card">
+      <ul class="timeline">
+        <li>
+          <strong>[Licenciatura / Ingeniería]</strong>
+          <span>[ESCOM] · 2023 – Actualidad</span>
+        </li>
+        <li>
+          <strong>[Bachillerato / Preparatoria]</strong>
+          <span>[Colegio Tecnologico de México] · 2020 – 2022</span>
+        </li>
+        <li>
+          <strong>[Secundaria]</strong>
+          <span>[Vicente Riva Palacios Guerrero #46] · 2016 – 2019</span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== CORREO Y REDES SOCIALES ===== -->
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <div class="card">
+      <p style="margin-bottom:16px;">
+        📧 Correo electrónico:
+        <a href="mailto:carmonajuarezfatima@gmail.com">carmonajuarezfatima@gmail.com</a>
+      </p>
+      <p style="margin-bottom:10px; color:var(--muted);">Sígueme en mis redes:</p>
+      <div class="redes">
+        <!-- CAMBIA los # por los links de tus perfiles -->
+        <a class="btn" href="https://www.facebook.com/fati.canelita/?locale=es_LA" target="_blank" rel="noopener">Facebook</a>
+        <a class="btn" href="https://www.instagram.com/fatisxcarm/" target="_blank" rel="noopener">Instagram</a>
+        <a class="btn" href="https://www.linkedin.com/in/carmona-ju%C3%A1rez-fatima-471110444/" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="https://github.com/Cocolito-loco" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://x.com/Cocolitouu" target="_blank" rel="noopener">X / Twitter</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== HOBBIES (mínimo 3 fotos y/o videos) ===== -->
+  <section id="hobbies">
+    <h2>Hobbies</h2>
+    <p style="color:var(--muted);">Lo que me gusta hacer en mi tiempo libre.</p>
+    <div class="galeria">
+      <!-- CAMBIA las imágenes en la carpeta img/ y los textos -->
+      <figure>
+        <img src="hob1.jpg" alt="Hobby 1">
+        <figcaption><b>Nadar: </b>Desde pequeña mis papás me metieron a clases de natacion y 
+          hasta el momento es algo que me gusta practicar, vpy a competencias y los entrenamientos a pesar de ser pesados me gustan, 
+          me ayuda a relajarme en tiempos de examenes, es una buena forma de despejar tu mente.</figcaption>
+      </figure>
+      <figure>
+        <img src="hob2.jpg" alt="Hobby 2">
+        <figcaption><b>Jugar con mis mascotas: </b> Tengo 2 perros (LLam Llam y Coco) y un pato (Lucas), me gusta mucho salir a pasear
+        con mis dos perros, Coco al ser mas pequeña que Lllam Llam es mas latosa y cansa mas pero, el ver sus caritas de emocio de 
+      ambos es algo muy bonito, con mi pato me gusta jugar a perseguirlo ya que sus patitas se escuchan muy chistoso, a lucas
+    le gusta estar nadando en su alberca. </figcaption>
+      </figure>
+      <figure>
+        <img src="hob3.jpg" alt="Hobby 3">
+        <figcaption><b>Ver la TV: </b> Me gusta mucho ver series, peliculas, k-dramas, me entretengo muy facil y aunque no me guste lo 
+          que este viendo lo termino solo para saber en que termina, puedo pasar horas frende a la pantalla y no me aburro, ya que para mi
+          cada programa te transmite una emocion diferente.</figcaption>
+      </figure>
+      <!-- OPCIONAL: video de YouTube (reemplaza VIDEO_ID)
+      <figure>
+        <iframe src="https://www.youtube.com/embed/VIDEO_ID" allowfullscreen></iframe>
+        <figcaption><b>Video:</b> descripción.</figcaption>
+      </figure>
+      -->
+    </div>
+  </section>
+
+  <!-- ===== ACERCA DE CRIPTOGRAFÍA ===== -->
+  <section id="criptografia" class="cripto">
+    <h2>Acerca de Criptografía</h2>
+    <div class="card">
+      <h3 style="margin-top:0;">Alan Turing y la máquina Enigma</h3>
+      <p>
+        Alan Turing (1912–1954) fue un matemático británico considerado uno de los padres
+        de la computación moderna. Durante la Segunda Guerra Mundial trabajó en Bletchley Park,
+        el centro británico de criptoanálisis, donde lideró los esfuerzos para descifrar los
+        mensajes cifrados con la máquina alemana Enigma.
+      </p>
+
+      <h3>¿Cómo funcionaba Enigma?</h3>
+      <p>
+        Enigma era una máquina electromecánica con rotores que sustituía cada letra por otra
+        distinta, cambiando la sustitución con cada tecla presionada. Esto producía un número
+        enorme de configuraciones posibles, por lo que los alemanes la consideraban
+        prácticamente indescifrable.
+      </p>
+
+      <h3>El aporte de Turing</h3>
+      <p>
+        Turing diseñó, a partir de trabajo previo de criptógrafos polacos, una máquina llamada
+        <em>Bombe</em> que automatizaba la búsqueda de las configuraciones diarias de Enigma.
+        Gracias a ello los Aliados pudieron leer comunicaciones militares enemigas, y los
+        historiadores estiman que esto acortó la guerra de manera significativa.
+      </p>
+
+      <h3>¿Por qué es importante?</h3>
+      <p>
+        Además de su papel en la guerra, las ideas de Turing sobre computación sentaron las
+        bases de la informática actual. Su historia muestra que la criptografía y el
+        criptoanálisis han sido decisivos para la seguridad de la información, algo que hoy
+        usamos a diario con algoritmos como RSA.
+      </p>
+      <!-- Si prefieres, cambia este texto por otro criptógrafo, algoritmo (RSA, AES, César)
+           o evento importante, y agrega tus fuentes abajo. -->
+      <p style="margin-top:14px; color:var(--muted); font-size:.9rem;">
+       Fuentes: [agrega aquí las referencias que consultaste]
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 Fatima Carmona Juárez · Página personal para la materia de Criptografía
+  </footer>
+
+</body>
+</html>
